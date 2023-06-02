@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CGPA Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    
+    body {
+        /*background-color: rgb(188, 188, 230);*/
+        background-image: url("u.jpeg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+
+    table{
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 30px;
+    }
+
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid black;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 15%;
+        background-color: rgb(117, 117, 175);
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    input[type=reset] {
+        width: 15%;
+        background-color: rgb(117, 117, 175);
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: rgb(43, 43, 73);
+    }
+
+    input[type=reset]:hover {
+        background-color: rgb(43, 43, 73);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+function calculateGPA() {
+    var id = document.frm.id.value;
+    var name = document.frm.name.value;
+    var sem = document.frm.sem.value;
+    var no = document.frm.subject.value;
+    var gpa = 0.0;
+    var totalGPA = 0.0;
+    var totalCredit = 0;
+    var status;
+
+    if (name === "") {
+        alert("Please enter a name!");
+        document.getElementsByName("name").focus();
+        return false;
+    }
+
+    if (sem === "") {
+        alert("Please enter a semester!");
+        document.getElementsByName("sem").focus();
+        return false;
+    }
+
+    for (var i = 0; i < no; i++) {
+        var code = document.getElementsByName("code")[i].value;
+        var credit = parseInt(document.getElementsByName("credit")[i].value);
+        var grade = document.getElementsByName("grade")[i].value;
+
+        if (code === "") {
+            alert("Please enter a code!");
+            document.getElementsByName("code").focus();
+            return false;
+        }
+
+        if (credit === "") {
+            alert("Please enter a credit!");
+            document.getElementsByName("credit").focus();
+            return false;
+        }
+
+        if (grade === "") {
+            alert("Please enter a grade!");
+            document.getElementsByName("grade").focus();
+            return false;
+        }
+
+        if (grade === "O") {
+            gpa += credit * 10;
+            totalCredit += credit;
+        } else if (grade === "A+") {
+            gpa += credit * 9;
+            totalCredit += credit;
+        } else if (grade === "A") {
+            gpa += credit * 8;
+            totalCredit += credit;
+        } else if (grade === "B+") {
+            gpa += credit * 7;
+            totalCredit += credit;
+        } else if (grade === "B") {
+            gpa += credit * 6;
+            totalCredit += credit;
+        } else if (grade === "C+") {
+            gpa += credit * 5;
+            totalCredit += credit;
+        } else if (grade === "C") {
+            gpa += credit * 4;
+            totalCredit += credit;
+        } else if (grade === "D+") {
+            gpa += credit * 3;
+            totalCredit += credit;
+        } else if (grade === "D") {
+            gpa += credit * 2;
+            totalCredit += credit;
+        } else if (grade === "F") {
+            gpa += credit * 1;
+            totalCredit += credit;
+        }
+    }
+
+    totalGPA = gpa / totalCredit;
+    if (totalGPA >= 8.5) {
+        status = "Topper";
+        alert("ID: " + id + "\nName: " + name + "\nSemester: " + sem + "\nGPA: " + totalGPA.toFixed(2) + "\nStatus: " + status);
+    } else {
+        alert("ID: " + id + "\nName: " + name + "\nSemester: " + sem + "\nGPA: " + totalGPA.toFixed(2));
+    }
+}
+
+function generateTable() {
+    var subjectCount = document.frm.subject.value;
+
+    if (isNaN(subjectCount)) {
+        alert("Please enter a number!");
+        document.frm.subject.value = "";
+        document.getElementsByName("subject").focus();
+        return false;
+    } else {
+        if (subjectCount === "") {
+            document.getElementsByName("subject").focus();
+        } else {
+            var tableHTML =
+                "<tr align=center><td colspan=4><p style=font-family:cursive>Calculate GPA</p></tr><tr align=center><td><i>No.<td><i>Code<td><i>Credit<td><i>Grade</tr>";
+
+            for (var i = 0; i < subjectCount; i++) {
+                tableHTML += "<tr><td>" + (i + 1) + "<td><input type='text' name='code'><td><input type='text' maxlength=1 size=1 name='credit'><td><select name='grade'>" +
+                    "<option value=''>Select Grade" +
+                    "<option value='O'>O" +
+                    "<option value='A+'>A+" +
+                    "<option value='A'>A" +
+                    "<option value='B+'>B+" +
+                    "<option value='B'>B" +
+                    "<option value='C+'>C+" +
+                    "<option value='C'>C" +
+                    "<option value='D+'>D+" +
+                    "<option value='D'>D" +
+                    "<option value='F'>F" +
+                    "</select></tr>";
+            }
+
+            tableHTML += "<input type='hidden' name='no' value=" + subjectCount + ">";
+            document.getElementById("genTable").innerHTML = tableHTML;
+        }
+    }
+}
+
+function deleteTable() {
+    var subjectCount = document.frm.subject.value;
+
+    if (subjectCount === "") {
+        var genTable = document.getElementById("genTable");
+        genTable.innerHTML = "";
+    }
+}
+
+</script>
+</head>
+<body>
+    <h1 align="center" style="color:rgb(43, 43, 73); font-family: cursive;">GPA Estimator</h1>
+    <form name="frm" onsubmit="return false">
+        <table align="center" class="table">
+            <tr>
+                <td>Roll Number</td>
+                <td><input type="text" name="id" maxlength="15"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>Number of subjects</td>
+                <td><input type="text" maxlength="1" size="1" name="subject" id="subject" onkeydown="delTable()" onkeyup="generateTable()"></td>
+            </tr>
+            <tr>
+                <td>Semester</td>
+                <td>
+                    <select name="sem">
+                        <option value="">Select Semester</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <table id="genTable" align="center"></table>
+        <center>
+            <p id="displayResult"></p>
+            <button id="btnSubmit" onclick="calculateGPA()">Calculate</button>
+            <input type="reset">
+        </center>
+    </form>
+</body>
+</html>
+
+
+

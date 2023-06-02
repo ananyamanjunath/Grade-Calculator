@@ -1,0 +1,277 @@
+
+#home{
+    background-color: rgb(188, 188, 230);
+}
+body{
+    overflow: hidden;
+}
+.cap{
+    width: 120px;
+    height: 120px;
+    float:left;
+    margin-right:10px;
+   
+}
+.text{
+    font-size: 50px;
+    color: rgb(0, 0, 0);
+    position: relative;
+    top: 20px;
+    font-family:cursive;
+}
+/*
+.nav-links{
+    flex:1;
+    margin-left: 960px;
+    text-decoration: none;
+    color: azure;
+    position: relative;
+    bottom: 85px;
+    animation: falling 2s;
+}
+.nav-links ul li{
+   
+    display: inline-block;
+    padding:  4px 4px;
+    position: relative;
+    right: 200px;
+    color: black;
+    font-family: cursive;
+    text-decoration: none;
+}
+
+.nav-links ul li a{
+    
+    text-decoration: none;
+    font-size: 26px;
+    text-decoration: none;
+}
+.nav-links ul li a:hover{
+    color:lightcyan;
+    text-decoration: none;
+}*/
+.intro-img{
+    margin-left: 690px;
+    position: relative;
+    bottom: 410px;
+}
+
+.heading{
+    font-size: 60px;
+    margin-left: 70px;
+    font-family: fantasy;
+}
+.heading1{
+    font-size: 40px;
+    margin-left: 70px;
+    color: rgb(88, 88, 143);
+    position: relative;
+    bottom: 50px;
+    font-style: italic;
+}
+.heading2{
+    font-size: 40px;
+    margin-left: 70px;
+    color: rgb(88, 88, 143);
+    position: relative;
+    bottom: 70px;
+    font-style: italic;
+
+}
+
+
+
+@keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 50%;
+    }
+  }
+  
+  @keyframes blink-caret {
+    from, to {
+      border-color: transparent;
+    }
+  }
+  
+  .typewriter {
+    overflow: hidden;
+    border-right: 0.15em solid black;
+    white-space: nowrap;
+    margin: 0;
+    padding-left: 65px;
+    letter-spacing: 0.15em;
+    animation: typing 5s steps(40, end) infinite, blink-caret 0.2s infinite;
+  }
+
+  /*nav links*/
+  @keyframes falling {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .text {
+    position: relative;
+    left: -100%;
+    animation: slide-in 0.5s forwards;
+  }
+  
+  @keyframes slide-in {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  
+#navbar ul{
+    display: flex;
+    margin-left: 850px;
+    position: relative;
+    bottom: 100px;
+    font-family: fantasy;
+}
+
+#navbar ul li{
+    list-style: none;
+    font-size: 1.3rem;
+   
+}
+
+#navbar ul li a{
+    display: block;
+    padding: 3px 22px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.5s;
+    color: black;
+}
+#navbar ul li a:hover{
+    background-color:rgb(38, 38, 88);
+    color: azure;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.wrapper{
+  display: flex;
+  position: relative;
+  bottom: 100px;
+}
+.wrapper .static-txt{
+  color: #fff;
+  font-size: 60px;
+  font-weight: 400;
+}
+.wrapper .dynamic-txts{
+  margin-left: 15px;
+  height: 90px;
+  line-height: 90px;
+  overflow: hidden;
+}
+.dynamic-txts li{
+  list-style: none;
+  color: rgb(47, 47, 89);
+  font-size: 60px;
+  font-weight: 500;
+  position: relative;
+  top: 0;
+  animation: slide 12s steps(1) infinite;
+}
+@keyframes slide {
+  100%{
+    top: -400px;
+  }
+}
+.dynamic-txts li span{
+  position: relative;
+  margin: 5px 0;
+  line-height: 90px;
+  animation: infinite;
+}
+.dynamic-txts li span::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgb(188, 188, 230);
+  border-left: 2px solid rgb(47, 47, 89);
+  animation: typing 3s steps(10) infinite;
+}
+@keyframes typing {
+  40%, 60%{
+    left: calc(100% + 30px);
+  }
+  100%{
+    left: 0;
+  }
+}
+
+
+
+
+
+
+
+
+/*
+.wrapper1 .dynamic-txts{
+  
+  height: 90px;
+  line-height: 90px;
+}
+.dynamic-txts li{
+  list-style: none;
+  color: black;
+  font-size: 60px;
+  font-weight: 500;
+  position: relative;
+  top: 0;
+  animation: slide 12s steps(4) infinite;
+}
+/*@keyframes slide {
+  100%{
+    top: -360px;
+  }
+} 
+.dynamic-txts li span{
+  position: relative;
+  margin: 5px 0;
+  line-height: 90px;
+}
+.dynamic-txts li span::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgb(188, 188, 230);
+  border-left: 2px solid black;
+  animation: typing 3s steps(10) infinite;
+}
+@keyframes typing {
+  40%, 60%{
+    left: calc(100% + 30px);
+  }
+  100%{
+    left: 100;
+  }
+}
